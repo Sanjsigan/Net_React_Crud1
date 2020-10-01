@@ -27,13 +27,19 @@ namespace Net_React_Crud1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DonationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddControllersWithViews();
+            services.AddControllers();
             services.AddRazorPages().AddRazorRuntimeCompilation();
+            services.AddCors(); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors(options =>
+            options.WithOrigins("http://localhost:3000")
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

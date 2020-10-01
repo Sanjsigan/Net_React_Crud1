@@ -17,7 +17,7 @@ namespace Net_React_Crud1.Models
 
        
         public string email { get; set; }
-
+         
         public int age { get; set; }
 
         
